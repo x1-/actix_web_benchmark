@@ -1,0 +1,33 @@
+[package]
+name = "actix_web_benchmark"
+version = "0.1.0"
+authors = ["x1- <viva008@gmail.com>"]
+build   = "build.rs"
+
+[[bin]]
+name = "actix_web_benchmark"
+path = "src/main.rs"
+
+[lib]
+path = "src/lib.rs"
+
+[dependencies]
+actix              = "^0.7.3"
+actix-web          = "^0.7.3"
+flexi_logger       = "^0.8.3"
+futures            = "^0.1"
+futures-cpupool    = "^0.1"
+grpc               = "=0.4.0"
+# grpcio             = "0.3.0"
+# grpcio-proto       = "0.3.0"
+httpbis            = "~0.6"
+log                = "^0.4"
+protobuf           = "=1.6.0"
+tls-api            = "^0.1"
+tls-api-native-tls = "^0.1"
+tokio              = "^0.1"
+tokio-threadpool   = "^0.1"
+
+[build-dependencies]
+protoc-rust-grpc   = "^0.4"
+# protoc-grpcio      = "0.2.0"
