@@ -3,6 +3,9 @@
 actix_web で性能がでない事案があったため、単体性能を測定してみました.
 性能測定には [tsung](http://tsung.erlang-projects.org/) を利用しています.
 
+詳細な条件等(特にカーネル・パラメータなど)は、ブログの方をご覧頂けますと助かります。
+[Rust の Web Framework, actix_web のパフォーマンスをとことん測定する](https://x1.inkenkun.com/?p=5837)
+
 ## 前提条件
 
 ### Dependencies
