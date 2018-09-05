@@ -69,15 +69,14 @@ impl Server {
                     .middleware(ActixLogger::default())
                     .resource("/health",      |r| r.method(Method::GET).f(Server::health))
                     .resource("/sleep",       |r| r.method(Method::GET).f(Server::sleep))
-                    .resource("/count",       |r| r.method(Method::GET).f(Server::count))
-                    .resource("/s_future",    |r| r.method(Method::GET).f(Server::sleep_and_future))
                     .resource("/f_sleep",     |r| r.method(Method::GET).f(Server::future_sleep))
+                    .resource("/count",       |r| r.method(Method::GET).f(Server::count))
                     .resource("/send_wait",   |r| r.method(Method::GET).f(Server::send_wait))
                     .resource("/fsend_wait",  |r| r.method(Method::GET).f(Server::future_send_wait))
                     .resource("/send_nowait", |r| r.method(Method::GET).f(Server::send_no_wait))
                     .resource("/grpc_wait",   |r| r.method(Method::GET).f(Server::grpc_wait))
-                    .resource("/grpc_per",    |r| r.method(Method::GET).f(Server::grpc_per))
                     .resource("/fgrpc_wait",  |r| r.method(Method::GET).a(Server::future_grpc_wait))
+                    .resource("/grpc_per",    |r| r.method(Method::GET).f(Server::grpc_per))
                     // .resource("/fgrpc_wait_a",|r| r.method(Method::GET).a(Server::future_grpc_wait_async))
             ]
         })
@@ -103,16 +102,6 @@ impl Server {
     fn sleep(_: &HttpRequest<Arc<ApplicationState>>) -> &'static str {
         thread::sleep(time::Duration::from_millis(100));
         "done"
-    }
-
-    ///
-    /// sleep してから、Future を返します.
-    /// 
-    fn sleep_and_future(_: &HttpRequest<Arc<ApplicationState>>) -> FutureResponse<&'static str> {
-        thread::sleep(time::Duration::from_millis(100));
-        Box::new(
-            future::ok("s_future done")
-        ).responder()
     }
 
     ///
